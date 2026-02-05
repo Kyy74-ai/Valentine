@@ -63,11 +63,9 @@
 
         <div class="photo-frame">
            <div class="photo-frame">
-    <!-- COBA FILE LOKAL DULU -->
-    <img src="Aya.jpg" alt="Aya" id="ayaPhoto" onerror="this.style.display='none'; document.getElementById('fallbackHeart').style.display='flex';">
-    
-    <!-- FALLBACK KALO FOTO GAK ADA -->
-    <div class="photo-fallback" id="fallbackHeart" style="display: none;">
+    <div class="photo-frame">
+    <img src="Aya.jpg" alt="Aya" id="ayaPhoto" onerror="handlePhotoError()">
+    <div class="photo-fallback" id="fallbackHeart">
         <i class="fas fa-heart"></i>
         <p style="font-size: 14px; margin-top: 5px;">Aya 💖</p>
     </div>
