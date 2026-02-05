@@ -62,9 +62,16 @@
         <p class="subtitle">You successfully unlocked my heart!</p>
 
         <div class="photo-frame">
-            <!-- GANTI DENGAN FOTO AYA.jpg -->
-            <img src="Aya.jpg" alt="Aya" id="ayaPhoto">
-        </div>
+           <div class="photo-frame">
+    <!-- COBA FILE LOKAL DULU -->
+    <img src="Aya.jpg" alt="Aya" id="ayaPhoto" onerror="this.style.display='none'; document.getElementById('fallbackHeart').style.display='flex';">
+    
+    <!-- FALLBACK KALO FOTO GAK ADA -->
+    <div class="photo-fallback" id="fallbackHeart" style="display: none;">
+        <i class="fas fa-heart"></i>
+        <p style="font-size: 14px; margin-top: 5px;">Aya 💖</p>
+    </div>
+</div>
 
         <div class="message-box">
             <p>Dear <strong>Aya</strong>,</p>
