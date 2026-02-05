@@ -1,18 +1,3 @@
-// AUTO DETECT JIKA FOTO TIDAK ADA
-window.addEventListener('load', function() {
-    const img = document.getElementById('ayaPhoto');
-    if (img) {
-        img.onerror = function() {
-            console.log('❌ Foto Aya.jpg tidak ditemukan, menggunakan fallback');
-            this.style.display = 'none';
-            const fallback = document.getElementById('fallbackHeart');
-            if (fallback) fallback.style.display = 'flex';
-        };
-        // Force check
-        img.src = img.src;
-    }
-});
-
 const CORRECT_NAME = "Aya";
 let attempts = 3;
 let isLocked = false;
@@ -29,6 +14,14 @@ const timer = document.getElementById('timer');
 const ayaPhoto = document.getElementById('ayaPhoto');
 const heartBtn = document.getElementById('heartBtn');
 const secretMsg = document.getElementById('secretMsg');
+const fallbackHeart = document.getElementById('fallbackHeart');
+
+// AUTO CHECK FOTO SAAT PAGE LOAD
+window.addEventListener('load', function() {
+    // HIDE FOTO DAN FALLBACK DULU
+    if (ayaPhoto) ayaPhoto.style.display = 'none';
+    if (fallbackHeart) fallbackHeart.style.display = 'none';
+});
 
 // EVENT LISTENERS
 unlockBtn.addEventListener('click', validateName);
@@ -105,31 +98,36 @@ function resetSystem() {
     timerBox.style.display = 'none';
 }
 
-// UNLOCK BERHASIL
+// UNLOCK BERHASIL - FIXED FOTO PROBLEM
 function unlockWebsite() {
     lockScreen.classList.add('hidden');
     unlockedScreen.classList.remove('hidden');
     
-    // CEK FOTO
+    // CEK APAKAH FOTO ADA
     const img = new Image();
     img.src = "Aya.jpg";
     
     img.onload = function() {
-        document.getElementById('ayaPhoto').style.display = 'block';
-        document.getElementById('fallbackHeart').style.display = 'none';
+        // FOTO ADA - TAMPILKAN FOTO
+        if (ayaPhoto) {
+            ayaPhoto.style.display = 'block';
+        }
+        if (fallbackHeart) {
+            fallbackHeart.style.display = 'none';
+        }
     };
     
     img.onerror = function() {
-        document.getElementById('ayaPhoto').style.display = 'none';
-        document.getElementById('fallbackHeart').style.display = 'flex';
+        // FOTO TIDAK ADA - TAMPILKAN FALLBACK
+        if (ayaPhoto) {
+            ayaPhoto.style.display = 'none';
+        }
+        if (fallbackHeart) {
+            fallbackHeart.style.display = 'flex';
+        }
     };
     
     createHearts(50);
-}
-
-function handlePhotoError() {
-    document.getElementById('ayaPhoto').style.display = 'none';
-    document.getElementById('fallbackHeart').style.display = 'flex';
 }
 
 // BUTTON LOVE DI HALAMAN 2
