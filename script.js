@@ -1,3 +1,18 @@
+// AUTO DETECT JIKA FOTO TIDAK ADA
+window.addEventListener('load', function() {
+    const img = document.getElementById('ayaPhoto');
+    if (img) {
+        img.onerror = function() {
+            console.log('❌ Foto Aya.jpg tidak ditemukan, menggunakan fallback');
+            this.style.display = 'none';
+            const fallback = document.getElementById('fallbackHeart');
+            if (fallback) fallback.style.display = 'flex';
+        };
+        // Force check
+        img.src = img.src;
+    }
+});
+
 const CORRECT_NAME = "Aya";
 let attempts = 3;
 let isLocked = false;
