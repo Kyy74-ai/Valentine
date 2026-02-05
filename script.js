@@ -110,13 +110,26 @@ function unlockWebsite() {
     lockScreen.classList.add('hidden');
     unlockedScreen.classList.remove('hidden');
     
-    // TAMPILKAN FOTO AYA (jika ada)
-    if (ayaPhoto) {
-        ayaPhoto.style.display = 'block';
-        document.querySelector('.default-pic').style.display = 'none';
-    }
+    // CEK FOTO
+    const img = new Image();
+    img.src = "Aya.jpg";
+    
+    img.onload = function() {
+        document.getElementById('ayaPhoto').style.display = 'block';
+        document.getElementById('fallbackHeart').style.display = 'none';
+    };
+    
+    img.onerror = function() {
+        document.getElementById('ayaPhoto').style.display = 'none';
+        document.getElementById('fallbackHeart').style.display = 'flex';
+    };
     
     createHearts(50);
+}
+
+function handlePhotoError() {
+    document.getElementById('ayaPhoto').style.display = 'none';
+    document.getElementById('fallbackHeart').style.display = 'flex';
 }
 
 // BUTTON LOVE DI HALAMAN 2
