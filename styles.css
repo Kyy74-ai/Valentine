@@ -66,6 +66,9 @@ h1 {
     object-fit: cover;
     border-radius: 50%;
 }
+#fallbackHeart {
+    display: none; /* Biarin hidden dulu */
+}
 .photo-fallback {
     width: 100%;
     height: 100%;
